@@ -1,0 +1,34 @@
+##Eagle Board & Schematic Merge##
+
+##Definitions...
+...
+...##
+
+##Schematic Merge##
+
+##Files##
+$File1="I:/eagle/MergeTest/Merge1_Test.sch"
+$File2="I:/eagle/MergeTest/Merge2_Test.sch"
+
+##Rename Definition##
+#Rename:
+	$val_type="Namecheck"
+	$val_name="rename_TagCheck"
+		$Type:
+			Name
+		$Strings:
+			"part"
+			"instance"
+			"bus"
+			"net"
+			"pinref"
+	$val_name="rename_AttributeNameCheck"
+		$Type:
+			Attribute_Name
+		$Strings:
+			"name"
+			"part"
+			
+	$val_type="Namechanger"
+	$val_name="rename_File1"
+		$

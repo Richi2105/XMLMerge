@@ -1,0 +1,38 @@
+2017-01-18 | 00:40:28 |  401 | WARNING | xmlmerge.manipulation.NameChanger | changeName | No attributes attached to Node {0}
+2017-01-18 | 00:40:43 |  717 | WARNING | xmlmerge.manipulation.NameChanger | changeName | No attributes attached to Node {0}
+2017-01-18 | 00:44:32 |  234 | WARNING | xmlmerge.manipulation.NameChanger | changeName | No attributes attached to Node {0}
+2017-01-18 | 00:46:24 |  358 | WARNING | xmlmerge.manipulation.NameChanger | changeName | No attributes attached to Node {0}
+2017-01-18 | 00:48:12 |   49 | WARNING | xmlmerge.manipulation.NameChanger | changeName | No attributes attached to Node {0}
+2017-01-18 | 00:48:12 |  119 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException: This is the root node
+2017-01-18 | 00:53:02 |  948 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException: This is the root node
+2017-01-18 | 00:54:14 |  220 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException: This is the root node
+2017-01-18 | 00:54:47 |   57 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException: This is the root node
+2017-01-18 | 00:54:55 |  540 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException: This is the root node
+2017-01-18 | 01:57:32 |  868 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException
+2017-01-18 | 02:01:43 |  571 | WARNING | xmlmerge.search.Namecheck | search | null
+2017-01-18 | 02:03:49 |  650 | WARNING | xmlmerge.search.Namecheck | search | null
+2017-01-18 | 02:06:55 |  675 | WARNING | xmlmerge.search.Namecheck | search | java.lang.NullPointerException
+2017-01-21 | 04:09:49 |   87 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 04:10:59 |  297 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 04:32:37 |  553 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 04:36:41 |  107 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 05:58:17 |  384 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 05:59:35 |  856 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:01:35 |  863 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:03:11 |   18 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:09:07 |  929 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:13:37 |  594 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:15:20 |   72 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:17:10 |  104 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:18:16 |  377 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 06:20:03 |  166 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 16:54:16 |  142 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 16:54:45 |  142 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 17:04:54 |  836 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 17:04:54 |  898 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-21 | 22:07:49 |  274 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-21 | 22:07:49 |  348 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-21 | 22:07:49 |  351 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-21 | 22:07:49 |  352 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-21 | 22:07:49 |  355 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-21 | 22:07:49 |  356 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
