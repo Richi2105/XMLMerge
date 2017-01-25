@@ -6,7 +6,7 @@
 package xmlmerge.namesearchFactory;
 
 import xmlmerge.data.XMLEntry;
-import xmlmerge.search.Namecheck;
+import xmlmerge.search.ContentEquals;
 
 /**
  *
@@ -14,17 +14,17 @@ import xmlmerge.search.Namecheck;
  */
 public class SkipNodeFactory {
   
-  private static Namecheck skipTagCheck;
+  private static ContentEquals skipTagCheck;
   
   private static void init_skipTagCheck() {
-    SkipNodeFactory.skipTagCheck = new Namecheck(XMLEntry.BIT_NAME);
+    SkipNodeFactory.skipTagCheck = new ContentEquals(XMLEntry.BIT_NAME);
     SkipNodeFactory.skipTagCheck.addSearchString("settings");
     SkipNodeFactory.skipTagCheck.addSearchString("grid");
     SkipNodeFactory.skipTagCheck.addSearchString("designrules");
     SkipNodeFactory.skipTagCheck.addSearchString("autorouter");
   }
   
-  public static Namecheck get_skipTagCheck() {
+  public static ContentEquals get_skipTagCheck() {
     if (SkipNodeFactory.skipTagCheck == null) {
       SkipNodeFactory.init_skipTagCheck();
     }

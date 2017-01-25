@@ -20,7 +20,7 @@ import xmlmerge.manipulation.ValueAdder;
 import xmlmerge.manipulation.ValueChanger;
 import xmlmerge.manipulation.ValueParser;
 import xmlmerge.manipulation.ValueSwapper;
-import xmlmerge.search.Namecheck;
+import xmlmerge.search.ContentEquals;
 import xmlmerge.search.NodeSkipper;
 import xmlmerge.xmlReader.XMLReader;
 import xmlmerge.xmlWriter.XMLWriter;
@@ -44,31 +44,41 @@ public class XMLMerge {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    
+/*    
     EagleSchematicDataManipulation esdm = new EagleSchematicDataManipulation(new File("I:\\eagle\\MergeTest\\Merge1.sch"));
     esdm.rename("Merge1");
+    esdm.move(200, 0);
     
     
-    EagleSchematicDataManipulation esdm_2 = new EagleSchematicDataManipulation(new File("I:\\eagle\\MergeTest\\Merge5.sch"));
+    EagleSchematicDataManipulation esdm_2 = new EagleSchematicDataManipulation(new File("I:\\eagle\\MergeTest\\Merge2.sch"));
     esdm_2.rename("Merge2");
-    esdm_2.move(200, 0);
+//    esdm_2.move(200, 0);
     esdm.merge(esdm_2);
+
     
     EagleBoardDataManipulation ebdm = new EagleBoardDataManipulation(new File ("I:\\eagle\\MergeTest\\Merge1.brd"));
     ebdm.rename("Merge1");
+    ebdm.rotate(39.04, 26.66);
+    ebdm.move(18, 0);
     
     
     EagleBoardDataManipulation ebdm_2 = new EagleBoardDataManipulation(new File ("I:\\eagle\\MergeTest\\Merge2.brd"));
     ebdm_2.rename("Merge2");
-    ebdm_2.move(40, 0);
+    ebdm_2.rotate(21.59, 16.51);
+//    ebdm_2.move(40, 0);
     ebdm.merge(ebdm_2);
     
     esdm.read();
-//    ebdm.read();
+    ebdm.read();
     
     esdm.write(new File("I:\\eagle\\MergeTest\\Merge1out.sch"));
-//    ebdm.write(new File("I:\\eagle\\MergeTest\\Merge1out.brd"));
-    
+    ebdm.write(new File("I:\\eagle\\MergeTest\\Merge1out.brd"));
+*/
+    EagleBoardDataManipulation ebdm = new EagleBoardDataManipulation(new File("I:\\eagle\\Manipulate\\Simson_TempSensor.brd"));
+    ebdm.rename("Temp1");
+    ebdm.rotate(10.16, 30.0);
+    ebdm.read();
+    ebdm.write(new File("I:\\eagle\\Manipulate\\Simson_TempSensor_rot.brd"));
 //    try {
       //Schematic Logic
 /*      

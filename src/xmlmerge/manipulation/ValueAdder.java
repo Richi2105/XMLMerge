@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import rslogger.RSLogger;
 import xmlmerge.data.XMLEntry;
-import xmlmerge.search.Namecheck;
+import xmlmerge.search.ContentCheck;
+import xmlmerge.search.ContentEquals;
 import xmlmerge.search.Searcher;
 
 /**
@@ -18,12 +19,12 @@ import xmlmerge.search.Searcher;
  */
 public class ValueAdder implements Searcher{
   
-  private final ArrayList<Namecheck> tagChecks;
-  private final Namecheck attributeNameCheck;
+  private final ArrayList<ContentCheck> tagChecks;
+  private final ContentCheck attributeNameCheck;
   private final String attributeName;
   private final String attributeValue;
   
-  public ValueAdder(Namecheck tagCheck, Namecheck attributeNameCheck, String attributeName, String attributeValue) {
+  public ValueAdder(ContentCheck tagCheck, ContentCheck attributeNameCheck, String attributeName, String attributeValue) {
     this.tagChecks = new ArrayList<>();
     this.tagChecks.add(tagCheck);
     this.attributeNameCheck = attributeNameCheck;
@@ -64,7 +65,7 @@ public class ValueAdder implements Searcher{
 
   @Override
   public int search(XMLEntry entry) {
-    for (Namecheck check : this.tagChecks)
+    for (ContentCheck check : this.tagChecks)
     {
       if (!check.search(entry))
         return 0;
@@ -73,7 +74,7 @@ public class ValueAdder implements Searcher{
   }
 
   @Override
-  public void addNamecheck(Namecheck n) {
+  public void addContentCheck(ContentCheck n) {
     this.tagChecks.add(n);
   }
   

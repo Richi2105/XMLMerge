@@ -36,3 +36,17 @@
 2017-01-21 | 22:07:49 |  352 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
 2017-01-21 | 22:07:49 |  355 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
 2017-01-21 | 22:07:49 |  356 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:51:46 |   62 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:51:46 |  312 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:51:46 |  328 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:51:46 |  328 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:55:33 |  158 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:55:33 |  205 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:55:33 |  205 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:55:33 |  205 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:59:10 |  471 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | null
+2017-01-25 | 13:59:10 |  549 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:59:10 |  564 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:59:10 |  564 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | null
+2017-01-25 | 13:59:10 |  564 | WARNING | xmlmerge.manipulation.ValueSwapper | parseValue | Node {0} does not contain a number
+2017-01-25 | 13:59:10 |  580 | WARNING | xmlmerge.manipulation.ValueParser | parseValue | Node {0} does not contain a number

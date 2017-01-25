@@ -8,7 +8,7 @@ package xmlmerge.manipulation;
 import java.util.logging.Level;
 import rslogger.RSLogger;
 import xmlmerge.data.XMLEntry;
-import xmlmerge.search.Namecheck;
+import xmlmerge.search.ContentEquals;
 
 /**
  *
@@ -19,7 +19,7 @@ public class StringValueParser extends ValueParser {  //Todo: change to implemen
   private String preValueString;
   private String postValueString;
   
-  public StringValueParser(Namecheck tagCheck, Namecheck attributeNameCheck) {
+  public StringValueParser(ContentEquals tagCheck, ContentEquals attributeNameCheck) {
     super(tagCheck, attributeNameCheck);
   }
   

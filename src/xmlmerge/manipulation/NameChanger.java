@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import rslogger.RSLogger;
 import xmlmerge.data.XMLEntry;
-import xmlmerge.search.Namecheck;
+import xmlmerge.search.ContentCheck;
+import xmlmerge.search.ContentEquals;
 import xmlmerge.search.Searcher;
 
 /**
@@ -18,8 +19,8 @@ import xmlmerge.search.Searcher;
  */
 public class NameChanger implements Searcher {
   
-  private final ArrayList<Namecheck> tagChecks;
-  private final Namecheck attributeNameCheck;
+  private final ArrayList<ContentCheck> tagChecks;
+  private final ContentCheck attributeNameCheck;
   private final String prefix;
   
   /**
@@ -31,7 +32,7 @@ public class NameChanger implements Searcher {
    * @param prefix a string to be set in front of a name, to make it unique
    * amongst other names that may be added to a xml document
    */
-  public NameChanger(Namecheck tagCheck, Namecheck attributeNameCheck, String prefix) {
+  public NameChanger(ContentCheck tagCheck, ContentCheck attributeNameCheck, String prefix) {
     this.tagChecks = new ArrayList<>();
     this.tagChecks.add(tagCheck);
     this.attributeNameCheck = attributeNameCheck;
@@ -40,11 +41,13 @@ public class NameChanger implements Searcher {
   
   private int changeName(XMLEntry e) {
     int retVal = 0;
+    int pos = 0;
     boolean rename = false;
     if (this.attributeNameCheck != null)
     {
       if (this.attributeNameCheck.search(e))
       {
+        pos = this.attributeNameCheck.getAttributeMatchPosition();
         rename = true;
       }
     }
@@ -64,7 +67,7 @@ public class NameChanger implements Searcher {
         }
         else
         {
-          e.getAttributes().get(0).addPrefix(prefix);
+          e.getAttributes().get(pos).addPrefix(prefix);
           retVal = 1;
         }
       }
@@ -79,7 +82,7 @@ public class NameChanger implements Searcher {
 
   @Override
   public int search(XMLEntry entry) {
-    for (Namecheck check : this.tagChecks)
+    for (ContentCheck check : this.tagChecks)
     {
       if (!check.search(entry))
         return 0;
@@ -88,7 +91,7 @@ public class NameChanger implements Searcher {
   }
 
   @Override
-  public void addNamecheck(Namecheck n) {
+  public void addContentCheck(ContentCheck n) {
     this.tagChecks.add(n);
   }
   

@@ -14,9 +14,9 @@ import xmlmerge.data.XMLEntry;
  */
 public class NodeSkipper implements Searcher {
   
-  private final ArrayList<Namecheck> tagChecks;
+  private final ArrayList<ContentCheck> tagChecks;
   
-  public NodeSkipper(Namecheck tagCheck) {
+  public NodeSkipper(ContentEquals tagCheck) {
     this.tagChecks = new ArrayList<>();
     this.tagChecks.add(tagCheck);
   }
@@ -24,7 +24,7 @@ public class NodeSkipper implements Searcher {
   @Override
   public int search(XMLEntry entry) {
     int number = 0;
-    for (Namecheck check : this.tagChecks)
+    for (ContentCheck check : this.tagChecks)
     {
       if (check.search(entry))
         number += 1;
@@ -36,7 +36,7 @@ public class NodeSkipper implements Searcher {
   }
   
   @Override
-  public void addNamecheck(Namecheck n) {
+  public void addContentCheck(ContentCheck n) {
     this.tagChecks.add(n);
   }
   

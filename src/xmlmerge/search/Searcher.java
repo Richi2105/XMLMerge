@@ -19,6 +19,6 @@ public interface Searcher {
   
   public int search(XMLEntry entry);
   
-  public void addNamecheck(Namecheck n);
+  public void addContentCheck(ContentCheck n);
   
 }

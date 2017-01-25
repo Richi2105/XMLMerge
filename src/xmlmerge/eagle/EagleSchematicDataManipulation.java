@@ -11,6 +11,7 @@ import xmlmerge.manipulation.ValueChanger;
 import xmlmerge.manipulation.ValueParser;
 import xmlmerge.namesearchFactory.RenameFactory;
 import xmlmerge.namesearchFactory.RevalueFactory;
+import xmlmerge.search.ContentCheck;
 
 /**
  *
@@ -39,27 +40,27 @@ public class EagleSchematicDataManipulation extends EagleDataManipulation {
   public void move(double x, double y) {
     ValueParser parseXVal = new ValueParser(RevalueFactory.get_schematic_revalueTagCheck(),
                                             RevalueFactory.get_revalueAttributeCheck_X());
-    parseXVal.addNamecheck(RevalueFactory.get_schematic_revalueParentTagCheck());
+    parseXVal.addContentCheck(RevalueFactory.get_schematic_revalueParentTagCheck());
     
     ValueParser parseYVal = new ValueParser(RevalueFactory.get_schematic_revalueTagCheck(),
                                             RevalueFactory.get_revalueAttributeCheck_Y());
-    parseYVal.addNamecheck(RevalueFactory.get_schematic_revalueParentTagCheck());
+    parseYVal.addContentCheck(RevalueFactory.get_schematic_revalueParentTagCheck());
     
     ValueParser parseX1Val = new ValueParser(RevalueFactory.get_schematic_revalueTagCheck(),
                                             RevalueFactory.get_revalueAttributeCheck_X1());
-    parseX1Val.addNamecheck(RevalueFactory.get_schematic_revalueParentTagCheck());
+    parseX1Val.addContentCheck(RevalueFactory.get_schematic_revalueParentTagCheck());
     
     ValueParser parseY1Val = new ValueParser(RevalueFactory.get_schematic_revalueTagCheck(),
                                             RevalueFactory.get_revalueAttributeCheck_Y1());
-    parseY1Val.addNamecheck(RevalueFactory.get_schematic_revalueParentTagCheck());
+    parseY1Val.addContentCheck(RevalueFactory.get_schematic_revalueParentTagCheck());
     
     ValueParser parseX2Val = new ValueParser(RevalueFactory.get_schematic_revalueTagCheck(),
                                             RevalueFactory.get_revalueAttributeCheck_X2());
-    parseX2Val.addNamecheck(RevalueFactory.get_schematic_revalueParentTagCheck());
+    parseX2Val.addContentCheck(RevalueFactory.get_schematic_revalueParentTagCheck());
     
     ValueParser parseY2Val = new ValueParser(RevalueFactory.get_schematic_revalueTagCheck(),
                                             RevalueFactory.get_revalueAttributeCheck_Y2());
-    parseY2Val.addNamecheck(RevalueFactory.get_schematic_revalueParentTagCheck());
+    parseY2Val.addContentCheck(RevalueFactory.get_schematic_revalueParentTagCheck());
     
     ValueChanger changeXVal = new ValueChanger(ValueChanger.VALUE_CHANGER_ADD, x);
     changeXVal.addValueParser(parseXVal);

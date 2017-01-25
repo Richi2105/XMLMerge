@@ -102,4 +102,9 @@ public abstract class EagleDataManipulation {
     w.write(file);
   }
   
+  public void writeSimpleXML(File file) {
+    XMLWriter w = new XMLWriter(this.reader.getTree());
+    w.writeSimpleXML(file);
+  }
+  
 }

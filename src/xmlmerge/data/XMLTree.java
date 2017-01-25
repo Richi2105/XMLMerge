@@ -7,7 +7,7 @@ package xmlmerge.data;
 
 import nu.xom.Document;
 import nu.xom.Element;
-import xmlmerge.search.Namecheck;
+import org.vishia.xmlSimple.XmlNode;
 import xmlmerge.xmlReader.XMLReader;
 
 
@@ -36,6 +36,10 @@ public class XMLTree {
   
   public Element write() {
     return root.toElement();
+  }
+  
+  public XmlNode writeSimpleXML() {
+    return root.toSimpleXML();
   }
   
   public void write(Document doc) {    

@@ -8,7 +8,7 @@ package xmlmerge.manipulation;
 import java.util.logging.Level;
 import rslogger.RSLogger;
 import xmlmerge.data.XMLEntry;
-import xmlmerge.search.Namecheck;
+import xmlmerge.search.ContentEquals;
 
 /**
  * This class swaps number values of attributes
@@ -16,7 +16,7 @@ import xmlmerge.search.Namecheck;
  */
 public class ValueSwapper extends ValueParser {
   
-  private final Namecheck attributeNameCheck2;
+  private final ContentEquals attributeNameCheck2;
   private double parsedValue2;
   
   /**
@@ -25,7 +25,7 @@ public class ValueSwapper extends ValueParser {
    * @param attributeNameCheck first attribute name of the swap
    * @param attributeNameCheck2 second attribute name of the swap
    */
-  public ValueSwapper(Namecheck tagCheck, Namecheck attributeNameCheck, Namecheck attributeNameCheck2)
+  public ValueSwapper(ContentEquals tagCheck, ContentEquals attributeNameCheck, ContentEquals attributeNameCheck2)
   {
     super(tagCheck, attributeNameCheck);
     this.attributeNameCheck2 = attributeNameCheck2;
@@ -51,6 +51,7 @@ public class ValueSwapper extends ValueParser {
       }
       catch (NumberFormatException nfex)
       {
+        RSLogger.getLogger().log(Level.WARNING, null, nfex);
         RSLogger.getLogger().log(Level.WARNING, "Node {0} does not contain a number", entry.getName());
       }
     }

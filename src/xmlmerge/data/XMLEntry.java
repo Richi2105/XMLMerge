@@ -10,9 +10,11 @@ import java.util.logging.Level;
 import nu.xom.Attribute;
 import nu.xom.Element;
 import nu.xom.Text;
+import org.vishia.xmlSimple.XmlException;
+import org.vishia.xmlSimple.XmlNode;
+import org.vishia.xmlSimple.XmlNodeSimple;
 import rslogger.RSLogger;
 import static xmlmerge.data.XMLEntry.BIT_NAME;
-import xmlmerge.search.Namecheck;
 import xmlmerge.xmlReader.XMLReader;
 
 /**
@@ -180,8 +182,9 @@ public class XMLEntry {
         if (newChild != null) {
           boolean writeChild = true;
           for (XMLEntry child : subEntries)
-          {          
-            if (child.checkDifference(newChild) == 0)
+          {
+            int diff = child.checkDifference(newChild);
+            if (diff == 0)
             {
               child.add((Element) e.getChild(i), source);
               writeChild = false;
@@ -194,6 +197,18 @@ public class XMLEntry {
               if (newChildComplete != null)
               {
                 subEntries.add(newChildComplete);
+                /*
+                if (newChildComplete.attributes != null) {
+                  if (!newChildComplete.attributes.isEmpty()) {
+                    if (this.attributes == null) {
+                      RSLogger.getLogger().log(Level.WARNING, "this node {0} is an attribute", this.name);
+                    }
+                    else {
+                      this.attributes.addAll(this.getDifferentAttributes(newChildComplete));
+                    }
+                  }
+                }
+                */
               }
           }
         }
@@ -206,7 +221,7 @@ public class XMLEntry {
         RSLogger.getLogger().log(Level.WARNING, "unknown XML Node type");
       }
     }
-    
+/*    
     XMLEntry attCheck = new XMLEntry(e, null, 1, null);
     if (attCheck.attributes != null) {
       if (!attCheck.attributes.isEmpty()) {
@@ -218,6 +233,7 @@ public class XMLEntry {
         }
       }
     }
+*/
   }
   
   private ArrayList<XMLEntry> getDifferentAttributes(XMLEntry e) {
@@ -244,40 +260,68 @@ public class XMLEntry {
   /**
    * checks Attribute Difference:
    * compares the first attribute if both attributes contain members
-   * else BIT_ATTRIBUTE_NAME + BIT_ATTRIBUTE_VALUE is returned
-   * @param e the other XMLElement which attribute is compared
+   * 
+   * if this entry has no attributes, but other XMLEntry has attributes
+   *    BIT_ATTRIBUTE_NAME + BIT_ATTRIBUTE_VALUE is returned
+   * 
+   * if other XMLEntry has no attributes, (wether this one has or has not)
+   *    0 is returned
+   * 
+   * if both have attributes:
+   *    check if first attribte differ from one another, and proper bits are returned
+   * 
+   * @param e the other XMLEntry which attribute is compared
    * @return 
    */
   private int checkAttributeDifference(XMLEntry e) {
     int retVal = 0;
-    if (this.attributes != null) {
+    if (this.attributes == null) {
+      if (e.attributes != null) {
+        retVal = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);
+        return retVal;
+      }
+      else {
+        retVal = 0;
+        return retVal;
+      }
+    }
+/*
+    else if (this.attributes != null) {
       if (e.attributes == null) {
         retVal = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);
       }
     }
-    else if (this.attributes == null) {
-      if (e.attributes != null) {
-        retVal = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);
-      }
-    }
-    
+*/    
     if (this.attributes != null && e.getAttributes() != null)
-    {
-//      retVal.bits = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);    
+    { 
       if (this.attributes.isEmpty()) {
         if (!e.attributes.isEmpty()) {
           retVal = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);
+          return retVal;
         }
       }
+/*
       else if (!this.attributes.isEmpty()) {
         if (e.attributes.isEmpty()) {
           retVal = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);
         }
       }
-      
+*/      
       if (!this.attributes.isEmpty() && !e.attributes.isEmpty())
       {
-        retVal |= this.attributes.get(0).checkDifference(e.attributes.get(0)) << 2;
+        if (this.attributes.size() != e.attributes.size()) {
+          retVal = (BIT_ATTRIBUTE_NAME | BIT_ATTRIBUTE_VALUE);
+          return retVal;
+        }
+        else {
+          for (int i=0; i<this.attributes.size(); i+=1) {
+            retVal = this.attributes.get(i).checkDifference(e.attributes.get(i)) << 2;
+            if (retVal != 0) {
+              return retVal;
+            }
+          }
+        }
+        
       }
     }
     return retVal;
@@ -297,10 +341,33 @@ public class XMLEntry {
     if (!this.value.equals(e.getValue())) {
       retVal |= BIT_VALUE;
     }
-    AttributeDifference diff = this.checkAttributeDifference(e);
-    retVal |= diff.bits;
+    retVal |= this.checkAttributeDifference(e);
     //Todo: check via checkAttributeDifference, different attributes->new entry!
     return retVal;
+  }
+  
+  public XmlNode toSimpleXML() throws XmlException {
+    XmlNodeSimple thisElement = new XmlNodeSimple(this.name);
+    if (!this.value.isEmpty())
+    {
+      thisElement.addContent(value);
+    }
+    if (!this.attributes.isEmpty())
+    {
+      for (XMLEntry att : attributes)
+      {
+        thisElement.setAttribute(att.getName(), att.getValue());
+      }
+    }
+    
+    if (!this.subEntries.isEmpty())
+    {
+      for (XMLEntry child : subEntries)
+      {
+        thisElement.addContent(child.toSimpleXML());
+      }
+    }
+    return thisElement;
   }
   
   /**
