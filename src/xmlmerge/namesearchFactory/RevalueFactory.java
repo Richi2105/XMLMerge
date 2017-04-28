@@ -6,7 +6,9 @@
 package xmlmerge.namesearchFactory;
 
 import xmlmerge.data.XMLEntry;
+import xmlmerge.search.ContentCheck;
 import xmlmerge.search.ContentEquals;
+import xmlmerge.search.ParentCheck;
 
 /**
  *
@@ -20,7 +22,7 @@ public class RevalueFactory {
   
   private static ContentEquals board_revalueTagCheck;
   
-  private static ContentEquals board_revalueParentTagCheck;
+  private static ParentCheck board_revalueParentTagCheck;
   
   private static ContentEquals revalueAttributeCheck_X;
   private static ContentEquals revalueAttributeCheck_Y;
@@ -67,6 +69,8 @@ public class RevalueFactory {
     RevalueFactory.board_revalueTagCheck.addSearchString("attribute");
     RevalueFactory.board_revalueTagCheck.addSearchString("wire");
     RevalueFactory.board_revalueTagCheck.addSearchString("via");
+    RevalueFactory.board_revalueTagCheck.addSearchString("circle");
+    RevalueFactory.board_revalueTagCheck.addSearchString("hole");
     RevalueFactory.board_revalueTagCheck.addSearchString("vertex");
     RevalueFactory.board_revalueTagCheck.addSearchString("text");
   }
@@ -79,15 +83,15 @@ public class RevalueFactory {
   }
   
   private static void init_board_revalueParentTagCheck() {
-    RevalueFactory.board_revalueParentTagCheck = new ContentEquals(XMLEntry.BIT_PARENT_NAME);
-    RevalueFactory.board_revalueParentTagCheck.addSearchString("plain");
-    RevalueFactory.board_revalueParentTagCheck.addSearchString("elements");
-    RevalueFactory.board_revalueParentTagCheck.addSearchString("element");
-    RevalueFactory.board_revalueParentTagCheck.addSearchString("signal");
-    RevalueFactory.board_revalueParentTagCheck.addSearchString("polygon");
+    ContentEquals parentName = new ContentEquals(XMLEntry.BIT_NAME);
+    parentName.addSearchString("plain");
+    parentName.addSearchString("elements");
+    parentName.addSearchString("signal");
+    
+    RevalueFactory.board_revalueParentTagCheck = new ParentCheck(parentName, 2);
   }
   
-  public static ContentEquals get_board_revalueParentTagCheck() {
+  public static ContentCheck get_board_revalueParentTagCheck() {
     if (RevalueFactory.board_revalueParentTagCheck == null) {
       RevalueFactory.init_board_revalueParentTagCheck();
     }

@@ -5,9 +5,12 @@
  */
 package xmlmerge.data;
 
+import java.util.logging.Level;
 import nu.xom.Document;
 import nu.xom.Element;
+import org.vishia.xmlSimple.XmlException;
 import org.vishia.xmlSimple.XmlNode;
+import rslogger.RSLogger;
 import xmlmerge.xmlReader.XMLReader;
 
 
@@ -39,7 +42,12 @@ public class XMLTree {
   }
   
   public XmlNode writeSimpleXML() {
-    return root.toSimpleXML();
+    try {
+      return root.toSimpleXML();
+    } catch (XmlException ex) {
+      RSLogger.getLogger().log(Level.SEVERE, null, ex);
+      return null;
+    }
   }
   
   public void write(Document doc) {    

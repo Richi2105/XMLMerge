@@ -33,9 +33,43 @@ public class XMLMerge {
   
 //  private final File file;
   
+  private static class Position {
+    public double x;
+    public double y;
+    
+    public Position(double x, double y) {
+      this.x = x;
+      this.y = y;
+    }
+  }
+  
   public XMLMerge() {
     
   }
+  
+  private static String path_Mainboard_sch = "I:\\eagle\\Boards\\Simson_Mainboard.sch";
+  private static String path_Mainboard_brd = "I:\\eagle\\Boards\\Simson_Mainboard.brd";
+  
+  private static String path_Speedo_sch = "I:\\eagle\\Boards\\Simson_Speedo.sch";
+  private static String path_Speedo_brd = "I:\\eagle\\Boards\\Simson_Speedo.brd";
+  
+  private static String path_Regulator_sch = "I:\\eagle\\Boards\\Simson_Regulator12V.sch";
+  private static String path_Regulator_brd = "I:\\eagle\\Boards\\Simson_Regulator12V.brd";
+  
+  private static String path_Rearlight_sch = "I:\\eagle\\Boards\\Simson_Rearlight.sch";
+  private static String path_Rearlight_brd = "I:\\eagle\\Boards\\Simson_Rearlight.brd";
+  
+  private static String path_SpeedoLayer2_sch = "I:\\eagle\\Boards\\Simson_Speedo_Layer2.sch";
+  private static String path_SpeedoLayer2_brd = "I:\\eagle\\Boards\\Simson_Speedo_Layer2.brd";
+  
+  private static String path_TempSensor_sch = "I:\\eagle\\Boards\\Simson_TempSensor.sch";
+  private static String path_TempSensor_brd = "I:\\eagle\\Boards\\Simson_TempSensor.brd";
+  
+  private static String path_AudioAmp_sch = "I:\\eagle\\Boards\\AudioAmp.sch";
+  private static String path_AudioAmp_brd = "I:\\eagle\\Boards\\AudioAmp.brd";
+  
+  private static String path_DisplayAdapter_sch = "I:\\eagle\\Boards\\DotMatrixInterface.sch";
+  private static String path_DisplayAdapter_brd = "I:\\eagle\\Boards\\DotMatrixInterface.brd";
 
   
 
@@ -44,6 +78,158 @@ public class XMLMerge {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
+  
+  /*
+    //move
+    EagleBoardDataManipulation board = new EagleBoardDataManipulation(new File("I:\\eagle\\Boards\\Schematic.brd"));
+    board.move(6.0, 6.0);
+    board.read();
+    board.write(new File("I:\\eagle\\Boards\\Schematic1.brd"));
+  */
+  /*  
+    //Rotate stuff
+    EagleBoardDataManipulation tempSens = new EagleBoardDataManipulation(new File(path_TempSensor_brd));
+    tempSens.rotate(10.16, 30.0);
+    tempSens.read();
+    tempSens.write(new File("I:\\eagle\\Boards\\Simson_TempSensorrot.brd"));
+  */
+  
+    //Mainboard
+    
+    Position mainboardBPos = new Position(6.0, 6.0);
+    
+    Position speedoSPos = new Position(400.0, 0.0);
+    Position speedoBPos = new Position(112.0, 6.0);
+    
+    Position ampSPos = new Position(0, 274.0);
+    Position ampBPos = new Position(6.0, 92.0);
+    
+    Position adaptSPos = new Position(0, 714.0);
+    Position adaptBPos = new Position(112.0, 92.0);
+    
+    Position regulatorSPos = new Position(274.0, 714.0);
+    Position regulatorBPos = new Position(6.0, 178.0);
+    
+    Position speedo2SPos = new Position(574.0, 274.0);
+    Position speedo2BPos = new Position(169.0, 92.0);
+    
+    Position rearlightSPos = new Position(574.0, 423.0);
+    Position rearlightBPos = new Position(169.0, 150.0);
+    
+    Position temp1SPos = new Position(574.0, 572.0);
+    Position temp1BPos = new Position(112.0, 184.0);
+    
+    Position temp2SPos = new Position(574.0, 721.0);
+    Position temp2BPos = new Position(128.0, 184.0);
+    
+    EagleSchematicDataManipulation mainboardSchematic = new EagleSchematicDataManipulation(new File(path_Mainboard_sch));
+    mainboardSchematic.rename("Mainboard_");
+    
+    EagleBoardDataManipulation mainboardBoard = new EagleBoardDataManipulation(new File(path_Mainboard_brd));
+    mainboardBoard.rename("Mainboard_");
+    mainboardBoard.move(mainboardBPos.x, mainboardBPos.y);
+    
+    //Speedo    
+    EagleSchematicDataManipulation speedoSchematic = new EagleSchematicDataManipulation(new File(path_Speedo_sch));
+    speedoSchematic.rename("Speedo_");
+    speedoSchematic.move(speedoSPos.x, speedoSPos.y);
+    
+    EagleBoardDataManipulation speedoBoard = new EagleBoardDataManipulation(new File (path_Speedo_brd));
+    speedoBoard.rename("Speedo_");
+    speedoBoard.move(speedoBPos.x, speedoBPos.y);
+    
+    //Audioamp
+    EagleSchematicDataManipulation audioampSchematic = new EagleSchematicDataManipulation(new File(path_AudioAmp_sch));
+    audioampSchematic.rename("Amp_");
+    audioampSchematic.move(ampSPos.x, ampSPos.y);
+    
+    EagleBoardDataManipulation audioampBoard = new EagleBoardDataManipulation(new File(path_AudioAmp_brd));
+    audioampBoard.rename("Amp_");
+    audioampBoard.move(ampBPos.x, ampBPos.y);
+    
+    //12V Regulator
+    EagleSchematicDataManipulation regulatorSchematic = new EagleSchematicDataManipulation(new File(path_Regulator_sch));
+    regulatorSchematic.rename("Reg_");
+    regulatorSchematic.move(regulatorSPos.x, regulatorSPos.y);
+    
+    EagleBoardDataManipulation regulatorBoard = new EagleBoardDataManipulation(new File(path_Regulator_brd));
+    regulatorBoard.rename("Reg_");
+    regulatorBoard.move(regulatorBPos.x, regulatorBPos.y);
+    
+    
+    //Displayadapter
+    EagleSchematicDataManipulation displaySchematic = new EagleSchematicDataManipulation(new File(path_DisplayAdapter_sch));
+    displaySchematic.rename("Display_");
+    displaySchematic.move(adaptSPos.x, adaptSPos.y);
+    
+    EagleBoardDataManipulation displayBoard = new EagleBoardDataManipulation(new File(path_DisplayAdapter_brd));
+    displayBoard.rename("Display_");
+    displayBoard.rotate(86.0, 51.0);
+    displayBoard.move(adaptBPos.x, adaptBPos.y);
+    
+    //Speedo Layer 2
+    EagleSchematicDataManipulation speedo2Schematic = new EagleSchematicDataManipulation(new File(path_SpeedoLayer2_sch));
+    speedo2Schematic.rename("SpeedoL2_");
+    speedo2Schematic.move(speedo2SPos.x, speedo2SPos.y);
+    
+    EagleBoardDataManipulation speedo2Board = new EagleBoardDataManipulation(new File(path_SpeedoLayer2_brd));
+    speedo2Board.rename("SpeedoL2_");
+    speedo2Board.rotate(52.0, 23.0);
+    speedo2Board.move(speedo2BPos.x, speedo2BPos.y);
+    
+    //Rear Light
+    EagleSchematicDataManipulation rearlightSchematic = new EagleSchematicDataManipulation(new File(path_Rearlight_sch));
+    rearlightSchematic.rename("Rearlight_");
+    rearlightSchematic.move(rearlightSPos.x, rearlightSPos.y);
+    
+    EagleBoardDataManipulation rearlightBoard = new EagleBoardDataManipulation(new File(path_Rearlight_brd));
+    rearlightBoard.rename("Rearlight_");
+    rearlightBoard.rotate(28.0, 23.0);
+    rearlightBoard.move(rearlightBPos.x, rearlightBPos.y);
+    
+    //Temperature Sensor
+    EagleSchematicDataManipulation tempSensor1Schematic = new EagleSchematicDataManipulation(new File(path_TempSensor_sch));
+    tempSensor1Schematic.rename("Temp1_");
+    tempSensor1Schematic.move(temp1SPos.x, temp1SPos.y);
+    
+    EagleBoardDataManipulation tempSensor1Board = new EagleBoardDataManipulation(new File(path_TempSensor_brd));
+    tempSensor1Board.rename("Temp1_");
+    tempSensor1Board.move(temp1BPos.x, temp1BPos.y);
+    
+    EagleSchematicDataManipulation tempSensor2Schematic = new EagleSchematicDataManipulation(new File(path_TempSensor_sch));
+    tempSensor2Schematic.rename("Temp2_");
+    tempSensor2Schematic.move(temp2SPos.x, temp2SPos.y);
+    
+    EagleBoardDataManipulation tempSensor2Board = new EagleBoardDataManipulation(new File(path_TempSensor_brd));
+    tempSensor2Board.rename("Temp2_");
+    tempSensor2Board.move(temp2BPos.x, temp2BPos.y);
+    
+    //Merge
+    mainboardSchematic.merge(speedoSchematic);
+    mainboardSchematic.merge(audioampSchematic);
+    mainboardSchematic.merge(regulatorSchematic);
+    mainboardSchematic.merge(displaySchematic);
+    mainboardSchematic.merge(speedo2Schematic);
+    mainboardSchematic.merge(rearlightSchematic);
+    mainboardSchematic.merge(tempSensor1Schematic);
+    mainboardSchematic.merge(tempSensor2Schematic);
+    
+    mainboardSchematic.read();
+    mainboardSchematic.write(new File("I:\\eagle\\Boards\\Schematic.sch"));
+    
+    
+    mainboardBoard.merge(speedoBoard);
+    mainboardBoard.merge(audioampBoard);
+    mainboardBoard.merge(regulatorBoard);
+    mainboardBoard.merge(displayBoard);
+    mainboardBoard.merge(speedo2Board);
+    mainboardBoard.merge(rearlightBoard);
+    mainboardBoard.merge(tempSensor1Board);
+    mainboardBoard.merge(tempSensor2Board);
+    
+    mainboardBoard.read();    
+    mainboardBoard.write(new File("I:\\eagle\\Boards\\Schematic.brd"));
+
 /*    
     EagleSchematicDataManipulation esdm = new EagleSchematicDataManipulation(new File("I:\\eagle\\MergeTest\\Merge1.sch"));
     esdm.rename("Merge1");
@@ -74,6 +260,7 @@ public class XMLMerge {
     esdm.write(new File("I:\\eagle\\MergeTest\\Merge1out.sch"));
     ebdm.write(new File("I:\\eagle\\MergeTest\\Merge1out.brd"));
 */
+/*
     EagleBoardDataManipulation ebdm = new EagleBoardDataManipulation(new File("I:\\eagle\\Manipulate\\Simson_TempSensor.brd"));
     ebdm.rename("Temp1");
     ebdm.rotate(10.16, 30.0);
